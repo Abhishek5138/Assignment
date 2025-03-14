@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* height: 100vh; */
+            background-color: #f4f4f4;
+        }
+        .slider-container {
+            margin: 150px auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            width: 400px;
+            height: 250px;
+        }
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        img {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .buttons {
+            position:absolute;
+            text-align: center;
+            margin-left: 650px;
+            margin-top: -100px;
+            
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+            <img src="https://hdqwalls.com/download/thor-god-of-thunder-new-artwork-s5-1920x1080.jpg?text=Image+1" alt="Image 1">
+            <img src="https://wallpaper.dog/large/11007615.jpg?text=Image+2" alt="Image 2">
+            <img src="https://wallpaperaccess.com/full/45441.jpg?text=Image+3" alt="Image 3">
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button onclick="prevImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+    </div>
+    <script>
+        const sliderWrapper = document.getElementById("sliderWrapper");
+        let currentIndex = 0;
+        const totalImages = document.querySelectorAll(".slider-wrapper img").length;
+
+        function updateImage() {
+            sliderWrapper.style.transform = `translateX(-${currentIndex * 400}px)`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateImage();
+        }
+    </script>
+</body>
+</html>
